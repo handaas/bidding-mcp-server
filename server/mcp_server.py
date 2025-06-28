@@ -60,7 +60,7 @@ def call_api(product_id: str, params: dict) -> dict:
     url = f'https://console.handaas.com/api/v1/integrator/call_api/{INTEGRATOR_ID}'
     try:
         response = requests.post(url, data=call_params)
-        return response.json().get("data", "查询为空")
+        return response.json().get("data", None) or response.json().get("msgCN", None)
     except Exception as e:
         return "查询失败"
     
@@ -104,7 +104,7 @@ def bid_bigdata_bid_win_stats(matchKeyword: str, keywordType: str = None) -> dic
 
 
 @mcp.tool()
-def bid_bigdata_bidding_info(matchKeyword: str, pageSize: int = None, keywordType: str = None, pageIndex: int = None) -> dict:
+def bid_bigdata_bidding_info(matchKeyword: str, pageSize: int = 10, keywordType: str = None, pageIndex: int = None) -> dict:
     """
     该接口的功能是根据输入的企业标识符（企业名称、注册号、统一社会信用代码或企业id）和主体类型，查询并返回该企业参与的招投标信息，包括招投标公告类型、项目地区、公告详情及与之相关的企业信息。此接口的用途主要是在招投标信息管理系统中，帮助用户获取特定企业的招投标参与记录和项目详情，可用于企业信用审查、合作伙伴评估、市场竞争分析等场景。如果没有企业全称则先调取fuzzy_search接口获取企业全称。
 
@@ -219,7 +219,7 @@ def bid_bigdata_procurement_stats(matchKeyword: str, keywordType: str = None) ->
 
 
 @mcp.tool()
-def bid_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = None, pageSize: int = None) -> dict:
+def bid_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = 1, pageSize: int = None) -> dict:
     """
     该接口的功能是根据提供的企业名称、人名、品牌、产品、岗位等关键词模糊查询相关企业列表。返回匹配的企业列表及其详细信息，用于查找和识别特定的企业信息。
 
@@ -279,7 +279,7 @@ def bid_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = None, pageSize:
 def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, biddingRegion: str = None,
                biddingAnncPubStartTime: str = None, biddingAnncPubEndTime: str = None, searchMode: str = None,
                biddingProjectMaxAmount: float = None, biddingPurchasingType: str = None,
-               biddingProjectMinAmount: float = None, pageIndex: int = None, pageSize: int = None) -> dict:
+               biddingProjectMinAmount: float = None, pageIndex: int = 1, pageSize: int = None) -> dict:
     """
     该接口用于查询和筛选招投标信息，通过提供多种过滤条件如招标类型、招标单位类型、地理位置、项目金额范围等，返回符合条件的招投标公告详细信息，常用于政府、企业采购部门或相关单位进行招投标管理和分析。用户可以实时了解最新的招投标动态，以便决策和业务拓展。场景包括政府采购人员查询合适的招标项目，企业查找投标机会，以及分析招投标市场趋势等。
 
@@ -337,7 +337,7 @@ def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, bi
 
 
 @mcp.tool()
-def bid_bigdata_planned_projects(matchKeyword: str, pageIndex: int = None, pageSize: int = None, keywordType: str = None) -> dict:
+def bid_bigdata_planned_projects(matchKeyword: str, pageIndex: int = 1, pageSize: int = 10, keywordType: str = None) -> dict:
     """
     该接口用于查询企业拟建公告的信息，提供了通过企业名称、注册号、社会信用代码或企业ID等多种方式检索拟建项目的相关详情。典型使用场景包括政府部门或行业协会在监管和分析企业拟建项目情况时，通过该接口获取企业的拟建公告及详细信息，以便进行统计分析、市场研究和行业动向监控，支持决策制定和政策出台。通过这一接口，用户可以高效地访问到关于某个企业在建或拟建项目的时效性和区域性信息，有助于提升信息获取的便利性和准确性。
 
