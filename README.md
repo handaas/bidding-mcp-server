@@ -126,7 +126,6 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
 - 其他企业相关信息
 
 ### 2. bid_bigdata_bid_win_stats
@@ -167,17 +166,16 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
-  - `biddingId`: 招投标Id
-  - `infoType`: 招投标公告类型
-  - `projectRegion`: 项目地区
-  - `publishDate`: 公告发布时间
-  - `subjectMatterList`: 标的物
-  - `title`: 公告标题
-  - `role`: 招投标角色 - 招标，中标
-  - `projectAmount`: 项目金额
-  - `winningBidderList`: 中标企业
-  - `purchasingBidderList`: 招标企业
+- `biddingId`: 招投标Id
+- `infoType`: 招投标公告类型
+- `projectRegion`: 项目地区
+- `publishDate`: 公告发布时间
+- `subjectMatterList`: 标的物
+- `title`: 公告标题
+- `role`: 招投标角色 - 招标，中标
+- `projectAmount`: 项目金额
+- `winningBidderList`: 中标企业
+- `purchasingBidderList`: 招标企业
 
 ### 4. bid_bigdata_tender_stats
 **功能**: 企业招标统计分析
@@ -242,20 +240,19 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
-  - `biddingAnncTitle`: 公告标题
-  - `biddingContent`: 正文
-  - `biddingId`: 公告id
-  - `biddingInfoType`: 公告类型
-  - `biddingProjectType`: 项目类型
-  - `biddingPublishTime`: 公告时间
-  - `biddingEndTime`: 招标截止时间
-  - `biddingProjectID`: 项目编号
-  - `biddingAgentInfoList`: 招标代理机构信息列表
-  - `biddingPurchasingInfoList`: 招标单位相关信息列表
-  - `biddingWinningInfoList`: 中标单位相关信息列表
-  - `biddingRegion`: 招投标所属地区
-  - `hasFile`: 有无附件
+- `biddingAnncTitle`: 公告标题
+- `biddingContent`: 正文
+- `biddingId`: 公告id
+- `biddingInfoType`: 公告类型
+- `biddingProjectType`: 项目类型
+- `biddingPublishTime`: 公告时间
+- `biddingEndTime`: 招标截止时间
+- `biddingProjectID`: 项目编号
+- `biddingAgentInfoList`: 招标代理机构信息列表
+- `biddingPurchasingInfoList`: 招标单位相关信息列表
+- `biddingWinningInfoList`: 中标单位相关信息列表
+- `biddingRegion`: 招投标所属地区
+- `hasFile`: 有无附件
 
 ### 7. bid_bigdata_planned_projects
 **功能**: 拟建项目查询
@@ -270,14 +267,13 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
-  - `ppId`: 项目id
-  - `deviceList`: 待采设备
-  - `ppRegion`: 建设地点
-  - `ppTitle`: 项目名称
-  - `ppContent`: 项目内容
-  - `ppPublishTime`: 发布时间
-  - `ppApprovalTime`: 评审时间
+- `ppId`: 项目id
+- `deviceList`: 待采设备
+- `ppRegion`: 建设地点
+- `ppTitle`: 项目名称
+- `ppContent`: 项目内容
+- `ppPublishTime`: 发布时间
+- `ppApprovalTime`: 评审时间
 
 ## 使用场景
 

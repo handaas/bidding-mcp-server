@@ -117,7 +117,6 @@ def bid_bigdata_bidding_info(matchKeyword: str, pageSize: int = 10, keywordType:
 
     返回参数:
     - total: 总数 类型：int
-    - resultList: 结果列表 类型：list of dict
     - biddingId: 招投标Id 类型：string
     - infoType: 招投标公告类型 类型：string
     - projectRegion: 项目地区 类型：dict
@@ -231,7 +230,6 @@ def bid_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = 1, pageSize: in
 
     返回参数:
     - total: 总数 类型：int
-    - resultList: 结果列表 类型：list of dict
     - annualTurnover: 年营业额 类型：string
     - formerNames: 曾用名 类型：list of string
     - address: 注册地址 类型：string
@@ -301,9 +299,7 @@ def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, bi
     - pageSize: 分页大小 类型：int - 一页最多获取50条
 
     返回参数:
-    - biddingAnncTitle: 公告标题 类型：string
-    - biddingContent: 正文 类型：string
-    - resultList: 结果列表 类型：list of dict
+
     - total: 总数 类型：int
     - biddingId: 公告id 类型：string
     - biddingInfoType: 公告类型 类型：string
@@ -316,6 +312,8 @@ def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, bi
     - biddingWinningInfoList: 中标单位相关信息列表 类型：list of dict
     - biddingRegion: 招投标所属地区 类型：string
     - hasFile: 有无附件 类型：int
+    - biddingAnncTitle: 公告标题 类型：string
+    - biddingContent: 正文 类型：string
     """
     # 构建请求参数
     params = {
@@ -354,7 +352,6 @@ def bid_bigdata_planned_projects(matchKeyword: str, pageIndex: int = 1, pageSize
     返回参数:
     - total: 总数 类型：int
     - ppId: 项目id 类型：string
-    - resultList: 结果列表 类型：list of dict
     - deviceList: 待采设备 类型：list of string
     - ppRegion: 建设地点 类型：dict
     - ppTitle: 项目名称 类型：string
