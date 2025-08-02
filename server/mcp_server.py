@@ -291,14 +291,14 @@ def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, bi
 
     请求参数:
     - matchKeyword: 搜索关键词 类型：string - 默认按最新发布时间返回全部
-    - biddingType: 信息类型 类型：string - 招标类型枚举（招标预告，招标公告，变更补充，中标公告，采购意向，废标终止），可多选，输入格式举例：["招标预告","招标公告","采购意向"]
-    - biddingRegion: 项目地区 类型：string - 多选，支持省份，城市，输入格式举例：[["福建省","厦门市"],["贵州省","安顺市"]]
+    - biddingType: 信息类型 类型：list of string - 招标类型枚举（招标预告，招标公告，变更补充，中标公告，采购意向，废标终止），可多选，输入格式举例：["招标预告","招标公告","采购意向"]
+    - biddingRegion: 项目地区 类型：list of list of string - 多选，支持省份，城市，输入格式举例：[["福建省","厦门市"],["贵州省","安顺市"]]
     - biddingAnncPubStartTime: 发布开始日期 类型：string - 招投标公告发布开始时间，格式：“2024-08-01”
     - biddingAnncPubEndTime: 发布结束日期 类型：string - 招投标公告发布结束时间，格式：“2024-11-01”
     - searchMode: 搜索模式 类型：select - 搜索模式枚举（标题匹配，标的物匹配，全文匹配）
-    - biddingProjectMaxAmount: 项目金额最大值 类型：float - 项目金额最大值，单位：万
+    - biddingProjectMaxAmount: 项目金额最大值 类型：float - 项目金额最大值，单位：万，默认为空值
     - biddingPurchasingType: 招标单位类型 类型：string - 招标单位类型枚举（政府，学校，医院，公安，部队，企业），可输入多个用英文逗号分隔，输入格式举例：“政府,学校”
-    - biddingProjectMinAmount: 项目金额最小值 类型：float - 项目金额最小值，单位：万
+    - biddingProjectMinAmount: 项目金额最小值 类型：float - 项目金额最小值，单位：万，默认为空值
     - pageIndex: 分页索引 类型：int
     - pageSize: 分页大小 类型：int - 一页最多获取50条
 
@@ -320,6 +320,16 @@ def bid_bigdata_bid_search(matchKeyword: str = None, biddingType: str = None, bi
     - biddingContent: 正文 类型：string
     """
     # 构建请求参数
+    if biddingType:
+        try:
+            biddingType = json.loads(biddingType)
+        except:
+            return {"error": "招标类型格式错误, 请输入list字符串, 例如：['招标预告','招标公告','采购意向']"}
+    if biddingRegion:
+        try:
+            biddingRegion = json.loads(biddingRegion)
+        except:
+            return {"error": "项目地区格式错误, 请输入list of list of string字符串, 例如：[['福建省','厦门市'],['贵州省','安顺市']]"}
     params = {
         'matchKeyword': matchKeyword,
         'biddingType': biddingType,
